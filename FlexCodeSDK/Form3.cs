@@ -64,15 +64,16 @@ namespace WindowsFormsApplication1
         {
            if (Status == VerificationStatus.v_OK)
            {
-               textBox1.Text = textBox1.Text + "\r\n" + "ID : " + empid;
+               Console.Out.WriteLine(empid);
+               Program.ExitApplication(0);
            }
            else if (Status == VerificationStatus.v_NotMatch)
            {
-               textBox1.Text = textBox1.Text + "\r\n" + "Not recognized";
+               textBox1.Text = textBox1.Text + "\r\n" + "Intente de nuevo";
            }
            else if (Status == VerificationStatus.v_MultiplelMatch)
            {
-               textBox1.Text = textBox1.Text + "\r\n" + "Mltiple Match";
+               textBox1.Text = textBox1.Text + "\r\n" + "Intente de nuevo";
            }
         }
 
