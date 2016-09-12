@@ -21,6 +21,9 @@ namespace WindowsFormsApplication1
         public Form3()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Minimized;
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -41,10 +44,10 @@ namespace WindowsFormsApplication1
             ver.PictureSamplePath = imgPath;
            
             //4. Load templates from database to FlexCodeSDK
-            string cs = "server=127.0.0.1;userid=ControlAcceso;password=c0ntr0l4cc3s0;database=ControlAcceso";
+            string cs = "server=127.0.0.1;userid=root;password=sirob;database=controlaccesorails_development";
             conn = new MySqlConnection(cs);
             conn.Open();
-            string sql = "SELECT EmpID, EmpTemplate FROM Emp_T";
+            string sql = "SELECT rut, template FROM users";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             while (rdr.Read())
@@ -69,10 +72,12 @@ namespace WindowsFormsApplication1
            }
            else if (Status == VerificationStatus.v_NotMatch)
            {
+               Console.Out.WriteLine("no match");
                textBox1.Text = textBox1.Text + "\r\n" + "Intente de nuevo";
            }
            else if (Status == VerificationStatus.v_MultiplelMatch)
            {
+               Console.Out.WriteLine("multiple");
                textBox1.Text = textBox1.Text + "\r\n" + "Intente de nuevo";
            }
         }
